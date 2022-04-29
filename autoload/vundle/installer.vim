@@ -223,7 +223,7 @@ endf
 " bang   -- not used
 " ---------------------------------------------------------------------------
 func! vundle#installer#list(bang) abort
-  let bundles = vundle#scripts#bundle_names(map(copy(g:vundle#bundles), 'v:val.name_spec'))
+  let bundles = vundle#scripts#bundle_names(map(copy(g:vundle#bundles), 'v:val.name_spec . " (" . v:val.name . ")"'))
   call vundle#scripts#view('list', ['" My Plugins'], bundles)
   redraw
   echo len(g:vundle#bundles).' plugins configured'
