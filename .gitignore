@@ -1,2 +1,4 @@
 doc/tags
 .netrwhist
+_.sw?
+.*.sw?
