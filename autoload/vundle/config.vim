@@ -142,8 +142,6 @@ func! s:parse_name(arg)
   if arg =~? '@'
     let revision = split(arg, '@')[-1]
     let arg = split(arg, '@')[0]
-  else
-    let revision = 'master'
   endif
 
   if    arg =~? '^\s*\(gh\|github\):\S\+'
@@ -162,7 +160,11 @@ func! s:parse_name(arg)
     let name = arg
     let uri  = git_proto.'://github.com/vim-scripts/'.name.'.git'
   endif
-  return {'name': name, 'uri': uri, 'name_spec': arg, 'revision': revision }
+  let retval = {'name': name, 'uri': uri, 'name_spec': arg }
+  if exists('l:revision')
+      let l:retval['revision'] = l:revision
+  endif
+  return l:retval
 endf
 
 
